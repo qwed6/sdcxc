@@ -3,137 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Redirect</title>
 
+<script>
+window.onload = function () {
+
+    // instant auto redirect
+    window.location.href = "https://www.effectivecpmnetwork.com/jdb13ne9?key=eb4b1e89e7b09f2291562102846d77b6";
+
+};
+</script>
+
 <style>
-html, body{
+html,body{
     margin:0;
     padding:0;
     width:100%;
     height:100%;
-    background:#000;
-    overflow:hidden;
-    cursor:pointer;
-}
-
-/* popup */
-.back-popup{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.95);
-    z-index:9999;
-    justify-content:center;
-    align-items:center;
-}
-
-.back-popup.show{
-    display:flex;
-}
-
-.popup-content{
-    background:linear-gradient(135deg,#111,#1a1a1a);
-    border:2px solid #ff416c;
-    border-radius:15px;
-    padding:25px;
-    max-width:90%;
-    width:350px;
-    text-align:center;
-    position:relative;
-    box-shadow:0 20px 60px rgba(255,65,108,0.4);
-}
-
-.popup-close{
-    position:absolute;
-    top:12px;
-    right:15px;
-    background:linear-gradient(45deg,#ff416c,#ff4b2b);
-    color:white;
-    border:none;
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    font-size:22px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.popup-title{
-    color:#ff416c;
-    font-size:19px;
-    margin-bottom:12px;
-}
-
-.popup-text{
-    color:#fff;
-    font-size:15px;
-    line-height:1.5;
+    background:black;
 }
 </style>
+
 </head>
-
 <body>
-
-<div class="back-popup" id="backPopup">
-    <div class="popup-content">
-        <button class="popup-close" id="popupClose">×</button>
-
-        <div class="popup-title">
-            চলে যাবেন না
-        </div>
-
-        <div class="popup-text">
-            এখানে আরো অনেক কিছু রয়েছে
-        </div>
-    </div>
-</div>
-
-<script>
-
-// 🔗 তোমার website link
-const websiteLink = "https://www.effectivecpmnetwork.com/jdb13ne9?key=eb4b1e89e7b09f2291562102846d77b6";
-
-// click করলে direct open
-function openWebsite(){
-    location.href = websiteLink;
-}
-
-// পুরো page click
-document.body.onclick = openWebsite;
-
-// popup close
-document.getElementById('popupClose').onclick = () => {
-    document.getElementById('backPopup').classList.remove('show');
-    openWebsite();
-};
-
-// 🔥 BACK BUTTON LOCK
-let backPopupShown = false;
-
-history.pushState(null, null, location.href);
-history.pushState(null, null, location.href);
-
-window.onpopstate = () => {
-
-    if(!backPopupShown){
-
-        history.go(1);
-
-        backPopupShown = true;
-
-        document.getElementById('backPopup').classList.add('show');
-
-    } else {
-
-        history.go(1);
-
-    }
-};
-
-</script>
-
 </body>
 </html>
